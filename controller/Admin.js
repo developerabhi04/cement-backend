@@ -31,8 +31,6 @@ export const adminLogin = TryCatch(async (req, res, next) => {
 
 export const adminLogout = TryCatch(async (req, res, next) => {
 
-    localStorage.removeItem("admin-token");
-
     return res
         .status(200)
         .cookie("admin-token", "", {
