@@ -20,7 +20,8 @@ export const adminLogin = TryCatch(async (req, res, next) => {
     return res.status(200)
         .cookie("admin-token", token, {
             ...cookieOptions,
-            maxAge: 1000 * 60 * 15,
+            // maxAge: 1000 * 60 * 15,
+            maxAge: 1000 * 60 * 60 * 24 * 15,
         })
         .json({
             success: true,
