@@ -36,10 +36,17 @@ app.use(cors({
 }))
 
 
+app.get("/", (req, res) => {
+    res.send("Hello World!");
+});
+
+
 
 // Routes
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/admin", adminRoutes);
+
+
 
 
 
@@ -53,4 +60,4 @@ app.listen(PORT, (req, res) => {
 });
 
 
-export { adminSecretKey};
+export { adminSecretKey };
