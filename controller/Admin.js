@@ -10,7 +10,6 @@ import User from "../model/User.js";
 export const adminLogin = TryCatch(async (req, res, next) => {
 
     const { secretKey } = req.body;
-
     const isMatched = secretKey === adminSecretKey;
 
     if (!isMatched) return next(new ErrorHandler("Invalid Admin key", 401));
@@ -20,8 +19,8 @@ export const adminLogin = TryCatch(async (req, res, next) => {
     return res.status(200)
         .cookie("admin-token", token, {
             ...cookieOptions,
-            // maxAge: 1000 * 60 * 15,
-            maxAge: 1000 * 60 * 60 * 24 * 15,
+            maxAge: 1000 * 60 * 1,
+            // maxAge: 1000 * 60 * 60 * 24 * 15,
         })
         .json({
             success: true,
@@ -47,7 +46,7 @@ export const adminLogout = TryCatch(async (req, res, next) => {
 
 export const getAdminData = TryCatch(async (req, res, next) => {
     return res.status(200).json({
-        admin: true,
+        admin: false,
     });
 });
 
