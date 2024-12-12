@@ -5,7 +5,7 @@ import { ErrorHandler } from "./errorHandler.js";
 
 
 export const adminOnly = (req, res, next) => {
-    const token = req.cookies["admin-token"];
+    const token = req.cookies[process.env.ADMIN_TOKEN];
 
     if (!token) return next(new ErrorHandler("Only Admin can access this route", 401));
 

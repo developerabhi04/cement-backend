@@ -17,7 +17,7 @@ export const adminLogin = TryCatch(async (req, res, next) => {
     const token = jwt.sign(secretKey, process.env.JWT_SECRET);
 
     return res.status(200)
-        .cookie("admin-token", token, {
+        .cookie(process.env.ADMIN_TOKEN, token, {
             ...cookieOptions,
             maxAge: 1000 * 60 * 1,
             // maxAge: 1000 * 60 * 60 * 24 * 30,
@@ -33,7 +33,7 @@ export const adminLogout = TryCatch(async (req, res, next) => {
 
     return res
         .status(200)
-        .cookie("admin-token", "", {
+        .cookie(process.env.ADMIN_TOKEN, "", {
             ...cookieOptions,
             maxAge: 0,
         })
