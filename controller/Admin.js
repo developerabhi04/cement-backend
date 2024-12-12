@@ -18,9 +18,7 @@ export const adminLogin = TryCatch(async (req, res, next) => {
 
     return res.status(200)
         .cookie(process.env.ADMIN_TOKEN, token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Strict',
+            ...cookieOptions,
             maxAge: 1000 * 60 * 1,
             // maxAge: 1000 * 60 * 60 * 24 * 30,
         })
