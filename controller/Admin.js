@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 import { TryCatch } from "../middleware/error.js";
 import { ErrorHandler } from "../middleware/errorHandler.js";
 import { adminSecretKey } from "../app.js";
-import { cookieOptions } from "../config/db.js";
 import User from "../model/User.js";
 
 
@@ -18,9 +17,13 @@ export const adminLogin = TryCatch(async (req, res, next) => {
 
     return res.status(200)
         .cookie(process.env.ADMIN_TOKEN, token, {
-            ...cookieOptions,
+            maxAge: 10 * 24 * 60 * 60 * 1000,
+            sameSite: "none",
+            httpOnly: true,
+            secure: true,
+
             // maxAge: 1000 * 60 * 1,
-            maxAge: 1000 * 60 * 60 * 24 * 10,
+            // maxAge: 1000 * 60 * 60 * 24 * 10,
         })
         .json({
             success: true,
