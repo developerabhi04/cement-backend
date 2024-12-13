@@ -37,8 +37,11 @@ export const adminLogout = TryCatch(async (req, res, next) => {
     return res
         .status(200)
         .cookie(process.env.ADMIN_TOKEN, "", {
-            ...cookieOptions,
             maxAge: 0,
+            sameSite: "none",
+            httpOnly: true,
+            secure: true,
+
         })
         .json({
             success: true,
