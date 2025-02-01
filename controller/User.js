@@ -22,10 +22,11 @@ export const registerForm = TryCatch(async (req, res, next) => {
 
     res.json({
         success: true,
-        message: "user is Submitted",
+        message: 'Thank! you for submitting the form Sucessfully, We will get back to you shortly.',
         user,
     })
 })
+
 
 export const formData = TryCatch(async (req, res, next) => {
 
